@@ -6,27 +6,21 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-import java.util.List;
-
+import java.util.Collection;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Builder
-public class Patient {
+public class Medecin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
+    private Long id;
     private String nom;
-    @Temporal(TemporalType.DATE)
-    private Date dateNaissance;
-    private boolean maladie;
-    private int score;
+    private String email;
+    private String specialite;
 
-    //the strong one have mapped
-    @OneToMany(mappedBy = "patient")
-    private List<RendezVous> rendezVousList;
+    @OneToMany(mappedBy = "medecin",fetch = FetchType.LAZY)
+    private Collection<RendezVous> rendezVous;
 }

@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @SpringBootApplication
 public class SpringH2JpaWebLombokApplication implements CommandLineRunner {
@@ -21,16 +22,6 @@ public class SpringH2JpaWebLombokApplication implements CommandLineRunner {
 	@Override
 	public  void run(String ...args)throws Exception{
 
-		patientRepository.save(new Patient(null,"ahmed", LocalDateTime.now(),false,15));
-		patientRepository.save(new Patient(null,"ilias", LocalDateTime.now(),false,20));
-		patientRepository.save(new Patient(null,"adham", LocalDateTime.now(),false,28));
-
-		patientRepository.save(new Patient(null,"lyazin", LocalDateTime.now(),false,34));
-
-		List<Patient> patientList=patientRepository.findAll();
-		for (Patient patient : patientList) {
-			System.out.println(patient);
-		}
 
 	}
 

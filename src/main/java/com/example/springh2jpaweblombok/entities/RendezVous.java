@@ -1,5 +1,6 @@
 package com.example.springh2jpaweblombok.entities;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,26 +8,27 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
-import java.util.List;
-
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Builder
-public class Patient {
+public class RendezVous {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private  Long id;
+    private Date date;
+    private  StatusRDV status;
 
-    private String nom;
-    @Temporal(TemporalType.DATE)
-    private Date dateNaissance;
-    private boolean maladie;
-    private int score;
+    //patiend should be the join column
+    @ManyToOne
+    @JoinColumn
+    private  Patient patient;
+    @ManyToOne
+    @JoinColumn
+    private Medecin medecin;
 
-    //the strong one have mapped
-    @OneToMany(mappedBy = "patient")
-    private List<RendezVous> rendezVousList;
+    @OneToOne(mappedBy = "rendezVous")
+    private Consultation consultation;
 }
