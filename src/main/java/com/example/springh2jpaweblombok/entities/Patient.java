@@ -1,5 +1,6 @@
 package com.example.springh2jpaweblombok.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,6 +28,10 @@ public class Patient {
     private int score;
 
     //the strong one have mapped
-    @OneToMany(mappedBy = "patient")
+    @OneToMany(mappedBy = "patient",fetch=FetchType.LAZY)
+    //decid which one to be visible maeke some WRITE_ONLY to void infinit loop
+    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
     private List<RendezVous> rendezVousList;
+
+
 }

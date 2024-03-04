@@ -1,6 +1,8 @@
 package com.example.springh2jpaweblombok.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,18 +17,19 @@ import java.util.Date;
 @Entity
 @Builder
 public class RendezVous {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+    @Id //because the id sometimes might not be integer
+    private  String id;
     private Date date;
+    @Enumerated(EnumType.STRING)
     private  StatusRDV status;
 
     //patiend should be the join column
     @ManyToOne
-    @JoinColumn
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private  Patient patient;
+
+    //so access to it when writing only
     @ManyToOne
-    @JoinColumn
     private Medecin medecin;
 
     @OneToOne(mappedBy = "rendezVous")

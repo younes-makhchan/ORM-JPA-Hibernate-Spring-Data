@@ -1,7 +1,7 @@
 package com.example.springh2jpaweblombok;
 
 import com.example.springh2jpaweblombok.entities.Patient;
-import com.example.springh2jpaweblombok.repository.PatientRepositoryOld;
+import com.example.springh2jpaweblombok.repositoriesOld.PatientRepositoryOld;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 

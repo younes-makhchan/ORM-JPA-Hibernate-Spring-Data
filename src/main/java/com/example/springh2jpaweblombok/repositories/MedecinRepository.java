@@ -5,5 +5,5 @@ import com.example.springh2jpaweblombok.entities.Patient;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MedecinRepository extends JpaRepository<Medecin,Integer> {
-
+    Medecin findByNom(String nom);
 }
